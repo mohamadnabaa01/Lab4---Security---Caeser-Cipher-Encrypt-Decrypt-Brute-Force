@@ -128,6 +128,16 @@ public class CaeserCipher {
         return decryptedString;
     }
 
+    public static void BruteForce(String inputString) {
+        // loop over all possible shift keys, from 1 to 25
+        for (int i = 1; i < 26; i++) {
+            // decrypt the string using shift key i
+            String decryptedString = decryptString(inputString, i);
+            System.out.println("Shift Key: " + i);
+            System.out.println("Decrypted String: " + decryptedString + "\n");
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("What do you want to do? Encrypt / Decrypt / Brute Force");
         Scanner scan = new Scanner(System.in);
@@ -167,7 +177,17 @@ public class CaeserCipher {
             System.out.println(decryptString);
         }
 
-        scan.close();
+        // check if the input entered by the user is brute force to proceed
+        if (inputAction.equalsIgnoreCase("Brute Force")) {
 
+            // ask for encrypted text
+            System.out.println("Please enter an encrypted message:");
+            String inputString = scan.nextLine();
+
+            System.out.println("Check the following decrypted messages according to shift keys:");
+            BruteForce(inputString);
+        }
+
+        scan.close();
     }
 }
