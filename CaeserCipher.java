@@ -16,10 +16,13 @@ public class CaeserCipher {
 
         for (int i = 0; i < inputString.length(); i++) {
             // if the char selected from inputString is not capitalized
-            if (inputString.charAt(i) < 'A') {
+            char currentChar = inputString.charAt(i);
+
+            // check if the current char is a letter and not capital
+            if (currentChar >= 'a' && currentChar <= 'z') {
 
                 // get the index of the position of the char in the alphabet sequence
-                int alphabetposition = AlphabetCaeserLowerCase.indexOf(inputString.charAt(i));
+                int alphabetposition = AlphabetCaeserLowerCase.indexOf(currentChar);
 
                 // calculate the encrypted postion of the char, it is the sum of the shift key
                 // and the alphabet position module 26, the total number of alphabets
@@ -32,11 +35,36 @@ public class CaeserCipher {
                 // add the encrypted char to the string encryptedstring
                 encryptedString += encryptChar;
             }
+            // if the currentChar is capital letter
+            else if (currentChar >= 'A' && currentChar <= 'Z') {
+
+                // get the index of the position of the char in the upper case alphabet
+                int alphabetposition = AlphabetCaeserUpperCase.indexOf(currentChar);
+
+                // calculate the encrypted postion of the char, it is the sum of the shift key
+                // and the alphabet position module 26, the total number of alphabets
+                int encryptPosition = (shiftKey + alphabetposition) % 26;
+
+                // get the char of the encrypted position from the upper case alphabet caeser
+                // above
+                char encryptChar = AlphabetCaeserUpperCase.charAt(encryptPosition);
+
+                // add the encrypted char to the string encryptedstring
+                encryptedString += encryptChar;
+            }
+            // if the currentChar is not a letter
+            else {
+
+                // add the current char as it is to the encrypted string
+                encryptedString += currentChar;
+            }
         }
 
         // return the result encrypted string of the text inputString
         return encryptedString;
     }
+
+    public static String 
 
     public static void main(String[] args) {
         System.out.println("What do you want to do? Encrypt / Decrypt / Brute Force");
