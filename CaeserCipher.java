@@ -82,6 +82,11 @@ public class CaeserCipher {
                 // shift key from the alphabet position module 26, the total number of alphabets
                 int decryptPosition = (alphabetposition - shiftKey) % 26;
 
+                // if decryptPosition is negative, then add 26 to it
+                if (decryptPosition < 0) {
+                    decryptPosition = decryptPosition + 26;
+                }
+
                 // get the char of the decrypted position from the lower case alphabet caeser
                 // above
                 char decryptChar = AlphabetCaeserLowerCase.charAt(decryptPosition);
@@ -98,6 +103,11 @@ public class CaeserCipher {
                 // calculate the decrypted postion of the char, it is the subtraction of the
                 // shift key from the alphabet position module 26, the total number of alphabets
                 int decryptPosition = (alphabetposition - shiftKey) % 26;
+
+                // if decryptPosition is negative, then add 26 to it
+                if (decryptPosition < 0) {
+                    decryptPosition = decryptPosition + 26;
+                }
 
                 // get the char of the decrypted position from the upper case alphabet caeser
                 // above
